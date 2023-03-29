@@ -5,9 +5,11 @@ import { MovieListing } from '../AllComponents'
 
 const Home = () => {
   const dispatch = useDispatch();
+  const movieText = "harry"
+  const ShowText = "friends"
   useEffect(() => {
-       dispatch(fetchAsyncMovies())
-       dispatch(fetchAsyncShows())     
+       dispatch(fetchAsyncMovies(movieText))
+       dispatch(fetchAsyncShows(FileReader))     
   }, [dispatch])
   
   return (
