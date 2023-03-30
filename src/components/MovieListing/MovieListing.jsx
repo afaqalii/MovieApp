@@ -1,5 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Slider from 'react-slick'
+import { settings } from '../../common/settingForCarousel'
 import { getAllMovies, getAllShows, isLoading } from '../../features/movies/movieSlice'
 import { MovieCard } from '../AllComponents'
 import "./MovieListing.scss"
@@ -12,8 +14,8 @@ const MovieListing = () => {
   renderMovies = 
      movie.Response === "True" ? (  
        movie.Search.map((movie, index) => ( 
-        <MovieCard key={index} data={movie}/>
-       ))
+         <MovieCard key={index} data={movie}/>
+        ))
      ) : ( 
       <div className="movies-error">
         <h3>An error occur please try again later</h3>
@@ -36,7 +38,9 @@ const MovieListing = () => {
        {loading ? (
             <div className="loader">Loading.....</div>
        ) : ( 
-        <div className="movie-container">{renderMovies}</div>
+        <div className="movie-container">
+           <Slider {...settings}>{renderMovies}</Slider>           
+         </div>
        )
       }
       </div>
@@ -45,7 +49,9 @@ const MovieListing = () => {
         {loading ? (
             <div className="loader">Loading.....</div>
        ) : ( 
-        <div className="movie-container">{renderShows}</div>
+        <div className="movie-container">
+           <Slider {...settings}>{renderShows}</Slider>
+        </div>
        )
       }
       </div>

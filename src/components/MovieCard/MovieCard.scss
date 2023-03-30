@@ -1,10 +1,13 @@
 @import "../../common/colors.scss";
 .card-item {
+  .card-inner { 
   background: $secondary-color;
   cursor: pointer;
   transition: all 0.3s;
-  max-width: 300px;
-  &:hover {
+  min-height: 450px;
+  margin: 10px;
+  height: 100%;
+    &:hover {
     transform: scale(1.01);
     transition: all 0.3s;
     -webkit-transform: scale(1.01);
@@ -16,8 +19,6 @@
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
 }
-}
-
 .card-top {
   img {
     width: 100%;
@@ -27,7 +28,6 @@
 
 .card-bottom {
   padding: 20px;
-}
 .card-info {
   color: $font-primary;
   h4 {
@@ -36,3 +36,4 @@
     margin-bottom: 10px;
   }
 }
+}}}

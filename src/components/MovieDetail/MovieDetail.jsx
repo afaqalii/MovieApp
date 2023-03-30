@@ -24,7 +24,7 @@ const MovieDetail = () => {
       ) : (
         <>
           <div className="section-left">
-           <Link to="/feed"><div className="back"><BsArrowLeft/></div></Link>
+           <Link to="/"><div className="back"><BsArrowLeft/></div></Link>
             <div className="movie-title">{selectMovieOrShow.Title}</div>
             <div className="movie-rating">
               <span>

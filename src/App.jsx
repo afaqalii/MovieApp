@@ -8,8 +8,8 @@ function App() {
       <Header/>
        <div className="container">
       <Routes>
-         <Route path='/feed' element={<Home/>} />
-         <Route path='/feed/movie/:imdbID' element={<MovieDetail/>} />
+         <Route path='/' element={<Home/>} />
+         <Route path='/movie/:imdbID' element={<MovieDetail/>} />
          <Route path="*" element={<PageNotFound/>} />
       </Routes>
        </div>
