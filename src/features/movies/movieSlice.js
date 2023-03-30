@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import movieApi from '../../common/apis/movieApi'
 import { API_KEY } from '../../common/apis/MovieApiKey'
-
+import produce from "immer"
 export const fetchAsyncMovies = createAsyncThunk(
     "movies/fetchAsyncMovies", 
     async (term) => {
@@ -28,6 +28,7 @@ const initialState = {
     movie: {},
     shows: {},
     selectMovieOrShow: {},
+    loading: false,
 }
 
 const movieSlice = createSlice({
@@ -36,21 +37,29 @@ const movieSlice = createSlice({
     reducers : { 
         removeSelectedMovieOrShow: (state) => {
             state.selectMovieOrShow = {}
-        }
+        },
     },
     extraReducers: {
-        [fetchAsyncMovies.pending] : () => { 
-             console.log("pending")
+        [fetchAsyncMovies.pending] : (state) => { 
+            return produce(state, (draftState) => {
+                draftState.loading = true
+            })
         } ,
         [fetchAsyncMovies.fulfilled] : (state, {payload}) => {
-              console.log("fetched Successfully!")
-              return {...state, movie: payload}
+            return produce(state, (draftState) => {
+                draftState.loading = false
+                draftState.movie = payload
+            }) 
         },
         [fetchAsyncMovies.rejected] : () => {
             console.log("rejected")
         },
         [fetchAsyncShows.fulfilled] : (state, {payload}) => {
-            return {...state, shows: payload}
+            return produce(state, (draftState) => {
+                draftState.loading = false
+                draftState.shows = payload
+            })
+
         },
         [fetchAsyncShowsAndMovieDetails.fulfilled] : (state, {payload}) => {
             return {...state, selectMovieOrShow: payload}
@@ -58,8 +67,9 @@ const movieSlice = createSlice({
     }
 })
 
-export const {removeSelectedMovieOrShow} = movieSlice.actions
+export const {removeSelectedMovieOrShow, } = movieSlice.actions
 export const getAllMovies = (state) =>  state.moviesReducer
 export const getAllShows = (state) =>  state.moviesReducer
 export const getSelectedMovieOrShow = (state) =>  state.moviesReducer
+export const isLoading = (state) => state.moviesReducer
 export default movieSlice.reducer

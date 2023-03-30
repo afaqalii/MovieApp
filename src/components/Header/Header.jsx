@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchAsyncMovies, fetchAsyncShows } from '../../features/movies/movieSlice'
+import {FaSearch} from "react-icons/fa"
+import Logo from "../../assets/HeaderLogo.png"
 import "./Header.scss"
 
 const Header = () => {
@@ -10,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const submitHandler = (e) => {
     e.preventDefault()
-    if(term === "") return alert("Please enter a value in the searchbox :)")
+    if(term === "") return alert("Please enter a value in the searchbox:)")
     dispatch(fetchAsyncMovies(term))
     dispatch(fetchAsyncShows(term))
     setTerm("")
@@ -24,11 +26,11 @@ const Header = () => {
       <div className="search-bar">
         <form onSubmit={submitHandler}>
           <input type="text" value={term} placeholder='Search Movies or Shows' onChange={e => setTerm(e.target.value)} />
-          <button></button>
+          <button><FaSearch/></button>
         </form>
       </div>
       <div className="user-image">
-        <img src='' alt="" />
+        <img src={Logo} />
       </div>
     </div>
   )
