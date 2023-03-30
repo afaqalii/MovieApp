@@ -29,6 +29,7 @@ const initialState = {
     shows: {},
     selectMovieOrShow: {},
     loading: false,
+    searchedMovieInput: ""
 }
 
 const movieSlice = createSlice({
@@ -38,6 +39,9 @@ const movieSlice = createSlice({
         removeSelectedMovieOrShow: (state) => {
             state.selectMovieOrShow = {}
         },
+        SearchMovieInput : (state, {payload}) => {
+            return {...state, ...state.searchedMovieInput = payload }
+        }
     },
     extraReducers: {
         [fetchAsyncMovies.pending] : (state) => { 
@@ -72,4 +76,5 @@ export const getAllMovies = (state) =>  state.moviesReducer
 export const getAllShows = (state) =>  state.moviesReducer
 export const getSelectedMovieOrShow = (state) =>  state.moviesReducer
 export const isLoading = (state) => state.moviesReducer
+export const SearchMovieInput = (state) => state.moviesReducer
 export default movieSlice.reducer

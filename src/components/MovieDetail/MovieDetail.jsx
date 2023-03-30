@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import {BsArrowLeft} from "react-icons/bs"
+import { Link, useParams } from 'react-router-dom'
 import "./MovieDetail.scss"
 import { fetchAsyncShowsAndMovieDetails, getSelectedMovieOrShow, removeSelectedMovieOrShow } from '../../features/movies/movieSlice'
 
@@ -10,7 +11,6 @@ const MovieDetail = () => {
   const {selectMovieOrShow} = useSelector(getSelectedMovieOrShow)
   
   useEffect(() => {
-    
     dispatch(fetchAsyncShowsAndMovieDetails(imdbID))
     return () => {
       dispatch(removeSelectedMovieOrShow())
@@ -24,6 +24,7 @@ const MovieDetail = () => {
       ) : (
         <>
           <div className="section-left">
+           <Link to="/feed"><div className="back"><BsArrowLeft/></div></Link>
             <div className="movie-title">{selectMovieOrShow.Title}</div>
             <div className="movie-rating">
               <span>

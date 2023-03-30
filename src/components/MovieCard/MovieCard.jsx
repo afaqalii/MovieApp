@@ -4,7 +4,7 @@ import "./MovieCard.scss"
 const MovieCard = ({data}) => {
   return (
     <div className='card-item'>
-      <Link to={`/movie/${data.imdbID}`} > 
+      <Link to={`/feed/movie/${data.imdbID}`} > 
       <div className="card-inner">
         <div className="cart-top">
           <img src={data.Poster} alt={data.Title} />

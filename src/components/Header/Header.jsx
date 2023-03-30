@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <div className='header'>
       <div className="logo">
-      <Link to="/">Movie App</Link>
+      <Link to="/feed">Movie App</Link>
       </div>
       <div className="search-bar">
         <form onSubmit={submitHandler}>

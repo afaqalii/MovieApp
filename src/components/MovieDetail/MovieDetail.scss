@@ -6,6 +6,11 @@
   padding: 40px 0px;
   color: $font-primary;
   font-weight: 400;
+  .section-left {
+    .back {
+      font-size: 30px;
+    }
+  }
 }
 
 .movie-rating {

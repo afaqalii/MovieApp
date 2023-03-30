@@ -3,9 +3,6 @@ import { useSelector } from 'react-redux'
 import { getAllMovies, getAllShows, isLoading } from '../../features/movies/movieSlice'
 import { MovieCard } from '../AllComponents'
 import "./MovieListing.scss"
-import { register } from 'swiper/element/bundle';
-// register Swiper custom elements
-register();
 
 const MovieListing = () => {
   const {movie} = useSelector(getAllMovies)
@@ -34,19 +31,15 @@ const MovieListing = () => {
      )
   return (
     <div className='movie-wrapper'>
-      <swiper-container loop="true" css-mode="true"  slides-per-view="3" speed="500">
       <div className="movie-list">
         <h2>Movies</h2>
-        <swiper-slide>
        {loading ? (
             <div className="loader">Loading.....</div>
        ) : ( 
         <div className="movie-container">{renderMovies}</div>
        )
       }
-      </swiper-slide>
       </div>
-      </swiper-container>
       <div className="show-list">
         <h2>Shows</h2>
         {loading ? (
